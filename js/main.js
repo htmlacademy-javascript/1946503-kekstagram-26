@@ -7,14 +7,21 @@ const getRandomPositiveInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const RANDOM_NUMBERS = {
-  min: 1,
-  max: 25,
-};
+const OBJECT_COUNTER = 25;
 
-const RANDOM_NUMBERS_LIKES = {
+const MessageCount = {
+  min: 1,
+  max: 6,
+}
+
+const LIKES_COUNTER = {
   min: 15,
   max: 200,
+};
+
+const COMMENTS_COUNTER = {
+  min: 0,
+  max: 20,
 };
 
 const AVATARS = [
@@ -53,25 +60,42 @@ const DESCRIPTIONS = [
 'Памагити...',
 ];
 
-const getUrl = 'photos/' + [getRandomPositiveInteger(RANDOM_NUMBERS.min, RANDOM_NUMBERS.max)] + '.jpg';
+const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-const getComments = () => {
+const createCommentMessage = () => {
+  const messageCount = [getRandomPositiveInteger(messageCount.min, messageCount.max)];
+  const message = [];
+
+  for (let i = 1; i <= messageCount; i++) {
+    message.push(MESSAGES[getRandomArrayElement(0, MESSAGES.length - 1)]);
+  }
+  return [... new Set(message)].join(' ');
+};
+
+let commentsId = 0;
+let photoId = 0;
+
+const createComments = () => {
+  commentsId++;
   return {
-    id: getRandomPositiveInteger(RANDOM_NUMBERS.min, RANDOM_NUMBERS.max),
+    id: commentsId++,
     avatar: AVATARS[getRandomPositiveInteger(0, AVATARS.length - 1)],
     message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)],
     name: NAMES[getRandomPositiveInteger(0, NAMES.length - 1)],
   };
 };
 
-const getAllComments = () => {
+const createPhotoDescription = () => {
+  photoId++;
   return {
-    id: getRandomPositiveInteger(RANDOM_NUMBERS.min, RANDOM_NUMBERS.max),
-    url: getUrl,
-    likes: getRandomPositiveInteger(RANDOM_NUMBERS_LIKES.min, RANDOM_NUMBERS_LIKES.max),
-    comments: Array.from({length: [getRandomPositiveInteger(RANDOM_NUMBERS.min, RANDOM_NUMBERS.max)]}, getComments),
+    id: photoId,
+    url: 'photos/' + photoId + '.jpg',
+    likes: getRandomPositiveInteger(LIKES_COUNTER.min, LIKES_COUNTER.max),
+    comments: Array.from({length: [getRandomPositiveInteger(COMMENTS_COUNTER.min, COMMENTS_COUNTER.max)]}, createComments),
     description: DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length - 1)],
   };
 };
 
-const feedbackPackage = Array.from({length: [getRandomPositiveInteger(RANDOM_NUMBERS.min, RANDOM_NUMBERS.max)]}, getAllComments);
+const feedbackPackage = Array.from({length: OBJECT_COUNTER}, createPhotoDescription);
+
+console.log(feedbackPackage);
