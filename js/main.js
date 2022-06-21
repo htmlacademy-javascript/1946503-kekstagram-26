@@ -1,5 +1,7 @@
 const checkStringLength = (string, length) => string.length <= length;
 
+checkStringLength('string', 10);
+
 const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -9,9 +11,9 @@ const getRandomPositiveInteger = (a, b) => {
 
 const OBJECT_COUNTER = 25;
 
-const messageCount = {
+const MessageCount = {
   min: 1,
-  max: 6,
+  max: 2,
 };
 
 const LIKES_COUNTER = {
@@ -63,12 +65,13 @@ const DESCRIPTIONS = [
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
 const createCommentMessage = () => {
-  const messageCount = [getRandomPositiveInteger(messageCount.min, messageCount.max)];
+  const messageCount = [getRandomPositiveInteger(MessageCount.min, MessageCount.max)];
   const message = [];
 
   for (let i = 1; i <= messageCount; i++) {
-    message.push(MESSAGES[getRandomArrayElement(0, MESSAGES.length - 1)]);
+    message.push(MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)]);
   }
+
   return [... new Set(message)].join(' ');
 };
 
@@ -80,7 +83,7 @@ const createComments = () => {
   return {
     id: commentsId++,
     avatar: AVATARS[getRandomPositiveInteger(0, AVATARS.length - 1)],
-    message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)],
+    message: createCommentMessage(),
     name: NAMES[getRandomPositiveInteger(0, NAMES.length - 1)],
   };
 };
@@ -96,4 +99,6 @@ const createPhotoDescription = () => {
   };
 };
 
-const feedbackPackage = Array.from({length: OBJECT_COUNTER}, createPhotoDescription);
+const createThumbnail = () => Array.from({length: OBJECT_COUNTER}, createPhotoDescription);
+
+createThumbnail();
