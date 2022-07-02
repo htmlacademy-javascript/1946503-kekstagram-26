@@ -1,4 +1,2 @@
-import {createThumbnail} from './data.js';
-import './show-photo-users.js';
-
-console.log(createThumbnail());
+import {drawThumbnail} from './show-photo-users.js';
+drawThumbnail();
