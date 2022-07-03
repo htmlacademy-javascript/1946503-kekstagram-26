@@ -1,2 +1,4 @@
-import {drawThumbnail} from './show-photo-users.js';
+import {drawThumbnail} from './draw-thumbnail.js';
+
 drawThumbnail();
+
