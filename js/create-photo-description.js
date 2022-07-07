@@ -1,5 +1,5 @@
 import {getRandomPositiveInteger} from './util.js';
-import {createComments} from './create-comments.js'
+import {createComments} from './create-comments.js';
 
 const LIKES_COUNTER = {
   min: 15,
@@ -26,7 +26,7 @@ const createPhotoDescription = () => {
   photoId++;
   return {
     id: photoId,
-    url: 'photos/' + photoId + '.jpg',
+    url: `photos/${photoId}.jpg`,
     likes: getRandomPositiveInteger(LIKES_COUNTER.min, LIKES_COUNTER.max),
     comments: Array.from({length: [getRandomPositiveInteger(COMMENTS_COUNTER.min, COMMENTS_COUNTER.max)]}, createComments),
     description: DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length - 1)],
