@@ -1,4 +1,4 @@
-import { isEscapeKey } from './util.js';
+import { isEscapeKey} from './util.js';
 
 const PART_OF_COMMENTS = 5;
 
@@ -39,7 +39,7 @@ const renderComments = (array) => {
     const commentImg = comment.querySelector('.social__picture');
     commentImg.src = item.avatar;
     commentImg.alt = item.name;
-    comment.querySelector('.social__text').textContent = item.message;
+    comment.querySelector('.social__text').textContent = item.messages;
     commentsList.append(comment);
   });
 };
@@ -84,7 +84,6 @@ const fillBigPicture = (picture) => {
   pictureDescription.textContent = picture.description;
 };
 
-
 const showBigPicture = (picture) => {
   bigPicture.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -93,6 +92,5 @@ const showBigPicture = (picture) => {
   showComments(0, PART_OF_COMMENTS);
   addEventListener();
 };
-
 
 export {showBigPicture};
