@@ -19,7 +19,7 @@ const closePopup = () => {
     successPopupElement.remove();
   }
   removeEventListeners();
-}
+};
 
 const onEscapeButtonDown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -58,7 +58,7 @@ const createErrorMessage = () => {
 const addEventListeners = () => {
   document.addEventListener('keydown', onEscapeButtonDown);
   document.addEventListener('click', onBackgroundClick);
-}
+};
 
 function removeEventListeners() {
   document.removeEventListener('click', onBackgroundClick);

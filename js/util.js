@@ -24,7 +24,7 @@ const debounce = (callback, timeoutDelay = 500) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
 const shuffle = (array) => {
   const shuffleArray = array.slice();
